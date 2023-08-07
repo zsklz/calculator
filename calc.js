@@ -1,3 +1,9 @@
+const display = app.querySelector('#display');
+const displayableButtons = app.querySelectorAll('.displayable');
+displayableButtons.forEach((button) => {
+    button.addEventListener('click', (event) => {display.textContent += `${event.target.textContent}`});
+});
+
 const operation = {
     n0: undefined,
     n1: undefined,
