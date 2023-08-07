@@ -24,6 +24,8 @@ body {
     flex: 1;
     background-color: olivedrab;
     border-radius: 25px;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 #buttons {
