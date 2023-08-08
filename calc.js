@@ -1,7 +1,11 @@
 const display = app.querySelector('#display');
 const displayableButtons = app.querySelectorAll('[class="btn"]');
 displayableButtons.forEach((button) => {
-    button.addEventListener('click', (event) => {display.textContent += `${event.target.textContent}`});
+    button.addEventListener('click', (event) => {
+	if (display.textContent.length < 16) {
+	    display.textContent += `${event.target.textContent}`;
+	}
+    });
 });
 
 const operation = {
