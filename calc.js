@@ -1,5 +1,5 @@
 const display = app.querySelector('#display');
-const displayableButtons = app.querySelectorAll('[class="btn"]');
+const displayableButtons = app.querySelectorAll('.btn.digit');
 displayableButtons.forEach((button) => {
     button.addEventListener('click', (event) => {
 	if (display.textContent.length < 16) {
