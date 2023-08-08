@@ -1,11 +1,21 @@
 const display = app.querySelector('#display');
-const displayableButtons = app.querySelectorAll('.btn.digit');
-displayableButtons.forEach((button) => {
-    button.addEventListener('click', (event) => {
+const digits = app.querySelectorAll('.btn.digit');
+const decimalPoint = app.querySelector('#decimal');
+let isDecimal = false;
+
+digits.forEach((button) => {
+    button.addEventListener('click', () => {
 	if (display.textContent.length < 16) {
 	    display.textContent += `${event.target.textContent}`;
 	}
     });
+});
+
+decimalPoint.addEventListener('click', () => {
+    if (display.textContent.length < 16 && !isDecimal) {
+	isDecimal = true;
+	display.textContent += `${event.target.textContent}`;
+    }
 });
 
 const operation = {
