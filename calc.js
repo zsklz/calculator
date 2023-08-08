@@ -1,20 +1,23 @@
 const display = app.querySelector('#display');
+const mainDisplay = display.querySelector('#main');
+const secondaryDisplay = display.querySelector('#secondary');
 const digits = app.querySelectorAll('.btn.digit');
 const decimalPoint = app.querySelector('#decimal');
 let isDecimal = false;
 
 digits.forEach((button) => {
     button.addEventListener('click', () => {
-	if (display.textContent.length < 16) {
-	    display.textContent += `${event.target.textContent}`;
+	// TODO make event listener a separate function
+	if (mainDisplay.textContent.length < 16) {
+	    mainDisplay.textContent += `${event.target.textContent}`;
 	}
     });
 });
 
 decimalPoint.addEventListener('click', () => {
-    if (display.textContent.length < 16 && !isDecimal) {
+    if (mainDisplay.textContent.length < 16 && !isDecimal) {
 	isDecimal = true;
-	display.textContent += `${event.target.textContent}`;
+	mainDisplay.textContent += `${event.target.textContent}`;
     }
 });
 

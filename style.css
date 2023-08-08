@@ -21,13 +21,23 @@ body {
 
 #display {
     display: flex;
+    flex-direction: column;
     flex: 1;
+    gap: 10px;
     background-color: olivedrab;
     padding: 20px;
     border-radius: 25px;
-    justify-content: flex-end;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-end;
     font-size: 36px;
+}
+
+#display #main {
+
+}
+
+#display #secondary {
+    font-size: 20px;
 }
 
 #buttons {
