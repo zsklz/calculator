@@ -35,7 +35,7 @@ decimalPoint.addEventListener('click', (event) => {
 operators.forEach((operator) => {
     operator.addEventListener('click', (event) => {
 	if (mainDisplay.textContent) {
-	    secondaryDisplay.textContent = `${mainDisplay.textContent} ${event.target.textContent}`;
+	    secondaryDisplay.textContent = `${mainDisplay.textContent} ${event.target.textContent} `;
 	    operation.n0 = Number(mainDisplay.textContent);
 	    operation.operator = event.target.textContent;
 	    isDecimal = false;
@@ -45,13 +45,18 @@ operators.forEach((operator) => {
 });
 
 equal.addEventListener('click', () => {
-    
+    if (operation.n0 && operation.operator && mainDisplay.textContent) {
+	operation.n1 = Number(mainDisplay.textContent);
+	secondaryDisplay.textContent += mainDisplay.textContent;
+	// TODO fix rounding issues
+	mainDisplay.textContent = operate(operation);
+    }
 });
 
 const operation = {
-    n0: undefined,
-    n1: undefined,
-    operator: undefined
+    n0: null,
+    n1: null,
+    operator: null
 }
 
 function operate(operation) {
