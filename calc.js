@@ -6,6 +6,7 @@ const operators = app.querySelectorAll('.btn.operator');
 const decimalPoint = app.querySelector('#decimal');
 const equal = app.querySelector('#equal');
 let isDecimal = false;
+// this should be called operationLock to be precise
 let operationPending = false;
 
 digits.forEach((button) => {
@@ -47,9 +48,23 @@ operators.forEach((operator) => {
 equal.addEventListener('click', () => {
     if (operation.n0 && operation.operator && mainDisplay.textContent) {
 	operation.n1 = Number(mainDisplay.textContent);
-	secondaryDisplay.textContent += mainDisplay.textContent;
-	// TODO fix rounding issues
-	mainDisplay.textContent = operate(operation);
+	secondaryDisplay.textContent += `${mainDisplay.textContent} =`;
+	// TODO fix ans overflow screen for very large numbers/long decimals
+	// should be easier to fix with operate() i think
+	let ans = operate(operation);
+	if (operation.n1 === 0) {
+	    mainDisplay.textContent = 'Division by 0 error';
+	}
+	else if (Number.isInteger(ans)) {
+	    if (ans.toString().length > 16)
+		mainDisplay.textContent = ans.toExponential();
+	    else
+		mainDisplay.textContent = ans;
+	}
+	else {
+	    mainDisplay.textContent = ans.toFixed(14);
+	    isDecimal = true;
+	}
     }
 });
 
