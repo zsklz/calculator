@@ -49,16 +49,11 @@ equal.addEventListener('click', () => {
     if (operation.n0 && operation.operator && mainDisplay.textContent) {
 	operation.n1 = Number(mainDisplay.textContent);
 	secondaryDisplay.textContent += `${mainDisplay.textContent} =`;
-	// TODO fix ans overflow screen for very large numbers/long decimals
-	// should be easier to fix with operate() i think
 	let ans = operate(operation);
 	if (operation.n1 === 0) {
 	    mainDisplay.textContent = 'Division by 0 error';
 	}
 	else if (Number.isInteger(ans)) {
-	    if (ans.toString().length > 16)
-		mainDisplay.textContent = ans.toExponential();
-	    else
 		mainDisplay.textContent = ans;
 	}
 	else {
