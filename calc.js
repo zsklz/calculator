@@ -36,9 +36,10 @@ decimalPoint.addEventListener('click', (event) => {
 operators.forEach((operator) => {
     operator.addEventListener('click', (event) => {
 	if (mainDisplay.textContent) {
-	    secondaryDisplay.textContent = `${mainDisplay.textContent} ${event.target.textContent} `;
 	    operation.n0 = Number(mainDisplay.textContent);
 	    operation.operator = event.target.textContent;
+	    secondaryDisplay.textContent = `${operation.n0} ${operation.operator} `;
+	    mainDisplay.textContent = "";
 	    equalLock = false;
 	    decimalLock = false;
 	    operationLock = true;
@@ -47,10 +48,15 @@ operators.forEach((operator) => {
 });
 
 equal.addEventListener('click', () => {
-    if (operation.n0 && operation.operator && mainDisplay.textContent && !equalLock) {
+    if (operation.operator && !equalLock) {
 	equalLock = true;
-	operation.n1 = Number(mainDisplay.textContent);
-	secondaryDisplay.textContent += `${mainDisplay.textContent} =`;
+	if (!mainDisplay.textContent) {
+	    if (operation.operator === '*' || operation.operator === '/')
+		operation.n1 = 1;
+	    else operation.n1 = 1;
+	}
+	else operation.n1 = Number(mainDisplay.textContent);
+	secondaryDisplay.textContent += `${operation.n1} =`;
 	let ans = operate(operation);
 	if (operation.n1 === 0 && operation.operator === '/') {
 	    mainDisplay.textContent = 'Division by 0 error';
