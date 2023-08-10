@@ -7,6 +7,7 @@ const decimalPoint = app.querySelector('#decimal');
 const equal = app.querySelector('#equal');
 let decimalLock = false;
 let operationLock = false;
+let equalLock = false;
 
 digits.forEach((button) => {
     button.addEventListener('click', () => {
@@ -38,6 +39,7 @@ operators.forEach((operator) => {
 	    secondaryDisplay.textContent = `${mainDisplay.textContent} ${event.target.textContent} `;
 	    operation.n0 = Number(mainDisplay.textContent);
 	    operation.operator = event.target.textContent;
+	    equalLock = false;
 	    decimalLock = false;
 	    operationLock = true;
 	}
@@ -45,7 +47,8 @@ operators.forEach((operator) => {
 });
 
 equal.addEventListener('click', () => {
-    if (operation.n0 && operation.operator && mainDisplay.textContent) {
+    if (operation.n0 && operation.operator && mainDisplay.textContent && !equalLock) {
+	equalLock = true;
 	operation.n1 = Number(mainDisplay.textContent);
 	secondaryDisplay.textContent += `${mainDisplay.textContent} =`;
 	let ans = operate(operation);
