@@ -37,13 +37,17 @@ operators.forEach((operator) => {
     operator.addEventListener('click', (event) => {
 	if (mainDisplay.textContent) {
 	    operation.n0 = Number(mainDisplay.textContent);
-	    mainDisplay.textContent = "";
 	    operation.operator = event.target.textContent;
+	    mainDisplay.textContent = "";
 	    secondaryDisplay.textContent = `${operation.n0} ${operation.operator} `;
 	    equalLock = false;
 	    decimalLock = false;
 	    operationLock = true;
 
+	}
+	else if (operation.operator) {
+	    operation.operator = event.target.textContent;
+	    secondaryDisplay.textContent = `${operation.n0} ${operation.operator} `;
 	}
     });
 });
