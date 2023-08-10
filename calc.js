@@ -10,11 +10,14 @@ const del = app.querySelector('#del');
 let decimalLock = false;
 let operationLock = false;
 let equalLock = false;
+let divByZeroLock = false;
 
 digits.forEach((button) => {
     button.addEventListener('click', () => {
-	// TODO make event listener a separate function
-	if (operationLock){
+	if (divByZeroLock) {
+	    allClear();
+	}
+	if (operationLock) {
 	    mainDisplay.textContent = "";
 	    operationLock = false;
 	}
@@ -37,6 +40,7 @@ decimalPoint.addEventListener('click', (event) => {
 
 operators.forEach((operator) => {
     operator.addEventListener('click', (event) => {
+	if (divByZeroLock) return;
 	if (mainDisplay.textContent) {
 	    operation.n0 = Number(mainDisplay.textContent);
 	    operation.operator = event.target.textContent;
@@ -67,6 +71,7 @@ equal.addEventListener('click', () => {
 	let ans = operate(operation);
 	if (operation.n1 === 0 && operation.operator === '/') {
 	    mainDisplay.textContent = 'Division by 0 error';
+	    divByZeroLock = true;
 	}
 	else if (Number.isInteger(ans)) {
 	    mainDisplay.textContent = ans;
@@ -78,7 +83,7 @@ equal.addEventListener('click', () => {
     }
 });
 
-ac.addEventListener('click', () => {
+function allClear() {
     operation.n0 = null;
     operation.n1 = null;
     operation.operator = null;
@@ -87,8 +92,10 @@ ac.addEventListener('click', () => {
     decimalLock = false;
     operationLock = false;
     equalLock = false;
+    divByZeroLock = false;
+}
 
-});
+ac.addEventListener('click', allClear);
 
 del.addEventListener('click', () => {
     if (!equalLock) {
