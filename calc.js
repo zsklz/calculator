@@ -98,7 +98,7 @@ function allClear() {
 ac.addEventListener('click', allClear);
 
 del.addEventListener('click', () => {
-    if (!equalLock) {
+    if (!divByZeroLock) {
 	let newContent = mainDisplay.textContent.slice(0, -1);
 	mainDisplay.textContent = newContent;
 	if (!mainDisplay.textContent.includes('.'))
