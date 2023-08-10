@@ -52,7 +52,7 @@ equal.addEventListener('click', () => {
 	operation.n1 = Number(mainDisplay.textContent);
 	secondaryDisplay.textContent += `${mainDisplay.textContent} =`;
 	let ans = operate(operation);
-	if (operation.n1 === 0) {
+	if (operation.n1 === 0 && operation.operator === '/') {
 	    mainDisplay.textContent = 'Division by 0 error';
 	}
 	else if (Number.isInteger(ans)) {
