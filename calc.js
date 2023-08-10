@@ -37,9 +37,11 @@ operators.forEach((operator) => {
     operator.addEventListener('click', (event) => {
 	if (mainDisplay.textContent) {
 	    operation.n0 = Number(mainDisplay.textContent);
+	    mainDisplay.textContent = "";
+	}
+	if (operation.n0) {
 	    operation.operator = event.target.textContent;
 	    secondaryDisplay.textContent = `${operation.n0} ${operation.operator} `;
-	    mainDisplay.textContent = "";
 	    equalLock = false;
 	    decimalLock = false;
 	    operationLock = true;
@@ -53,7 +55,7 @@ equal.addEventListener('click', () => {
 	if (!mainDisplay.textContent) {
 	    if (operation.operator === '*' || operation.operator === '/')
 		operation.n1 = 1;
-	    else operation.n1 = 1;
+	    else operation.n1 = 0;
 	}
 	else operation.n1 = Number(mainDisplay.textContent);
 	secondaryDisplay.textContent += `${operation.n1} =`;
