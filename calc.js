@@ -5,8 +5,7 @@ const digits = app.querySelectorAll('.btn.digit');
 const operators = app.querySelectorAll('.btn.operator');
 const decimalPoint = app.querySelector('#decimal');
 const equal = app.querySelector('#equal');
-let isDecimal = false;
-// this should be called operationLock to be precise
+let decimalLock = false;
 let operationLock = false;
 
 digits.forEach((button) => {
@@ -23,12 +22,12 @@ digits.forEach((button) => {
 });
 
 decimalPoint.addEventListener('click', (event) => {
-    if (mainDisplay.textContent.length < 16 && !isDecimal) {
+    if (mainDisplay.textContent.length < 16 && !decimalLock) {
 	if (operationLock) {
 	    mainDisplay.textContent = "";
 	    operationLock = false;
 	}
-	isDecimal = true;
+	decimalLock = true;
 	mainDisplay.textContent += `${event.target.textContent}`;
     }
 });
@@ -39,7 +38,7 @@ operators.forEach((operator) => {
 	    secondaryDisplay.textContent = `${mainDisplay.textContent} ${event.target.textContent} `;
 	    operation.n0 = Number(mainDisplay.textContent);
 	    operation.operator = event.target.textContent;
-	    isDecimal = false;
+	    decimalLock = false;
 	    operationLock = true;
 	}
     });
@@ -58,7 +57,7 @@ equal.addEventListener('click', () => {
 	}
 	else {
 	    mainDisplay.textContent = ans.toFixed(4);
-	    isDecimal = true;
+	    decimalLock = true;
 	}
     }
 });
