@@ -5,6 +5,8 @@ const digits = app.querySelectorAll('.btn.digit');
 const operators = app.querySelectorAll('.btn.operator');
 const decimalPoint = app.querySelector('#decimal');
 const equal = app.querySelector('#equal');
+const ac = app.querySelector('#ac');
+const del = app.querySelector('#del');
 let decimalLock = false;
 let operationLock = false;
 let equalLock = false;
@@ -74,6 +76,18 @@ equal.addEventListener('click', () => {
 	    decimalLock = true;
 	}
     }
+});
+
+ac.addEventListener('click', () => {
+    operation.n0 = null;
+    operation.n1 = null;
+    operation.operator = null;
+    mainDisplay.textContent = "";
+    secondaryDisplay.textContent = "";
+    decimalLock = false;
+    operationLock = false;
+    equalLock = false;
+
 });
 
 const operation = {
