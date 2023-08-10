@@ -90,6 +90,15 @@ ac.addEventListener('click', () => {
 
 });
 
+del.addEventListener('click', () => {
+    if (!equalLock) {
+	let newContent = mainDisplay.textContent.slice(0, -1);
+	mainDisplay.textContent = newContent;
+	if (!mainDisplay.textContent.includes('.'))
+	    decimalLock = false;
+    }
+});
+
 const operation = {
     n0: null,
     n1: null,
