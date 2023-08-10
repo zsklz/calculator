@@ -57,7 +57,7 @@ equal.addEventListener('click', () => {
 	    mainDisplay.textContent = ans;
 	}
 	else {
-	    mainDisplay.textContent = ans.toFixed(14);
+	    mainDisplay.textContent = ans.toFixed(4);
 	    isDecimal = true;
 	}
     }
