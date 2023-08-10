@@ -38,13 +38,12 @@ operators.forEach((operator) => {
 	if (mainDisplay.textContent) {
 	    operation.n0 = Number(mainDisplay.textContent);
 	    mainDisplay.textContent = "";
-	}
-	if (operation.n0) {
 	    operation.operator = event.target.textContent;
 	    secondaryDisplay.textContent = `${operation.n0} ${operation.operator} `;
 	    equalLock = false;
 	    decimalLock = false;
 	    operationLock = true;
+
 	}
     });
 });
